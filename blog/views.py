@@ -7,6 +7,7 @@ import os
 from django.contrib.auth.models import User
 from _mysql import result
 from html5lib.treewalkers._base import to_text
+from django.contrib.auth import authenticate
 
 # Create your views here.
 def addArticaleForm(request):
@@ -115,3 +116,29 @@ def listAllUsers(request):
     return HttpResponse(result)
 
 
+# Login Part  With Sessions  -->  Shrouk (functions : home,signin)
+def home(request):
+    users = User.objects.all()
+    try:
+        for user in users:
+            # check for username and pass in DB . 
+            if (user.username == request.POST['u_name'] and user.password == request.POST['pass']):
+            # the password verified for the user
+                if user.is_active:
+                    # User is valid, active and authenticated 
+                    request.session["user_id"] = user.id
+                    return render(request, 'blog/home.html',{'User':user})  
+                else:
+                    #The password is valid, but the account has been disabled!
+                    return render(request, 'blog/activeAccount.html')               
+    except:
+        return render(request, 'blog/signin.html')              
+    return render(request, 'blog/signin.html')
+
+def signin(request):
+    #check if the user logged in redirect to home page
+    if "user_id" in request.session :
+        return  render(request, 'blog/home.html')
+    else:
+        return render(request,'blog/signin.html')
+    
