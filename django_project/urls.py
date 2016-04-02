@@ -29,5 +29,7 @@ urlpatterns = [
     url(r'^deleteArticaleForm/(?P<articale_id>[0-9]+)$', deleteArticaleForm),
 
     url(r'^selectAllArticales/$', selectAllArticales),
+    url(r'^signin/$',signin),
+    url(r'home/$',home)
 
 ]
