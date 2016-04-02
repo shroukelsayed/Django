@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form method="post" action="/addArticale/" enctype="multipart/form-data"/>
+		{% csrf_token %}
+		<input type="text" placeholder="title" name="title" enctype="multipart/form-data" /><br/>
+		<br/><br/>
+		<textarea rows="10" cols="50" placeholder="content" name="content"></textarea>
+		<br/><br/>
+		<input type="file" name="img" accept="image/*"/>
+		<br/><br/>
+		<input type="submit" value="SAVE"/>
+	</form>
+	
+	<!-- {% for p in posts %}
+		<labe style='background-color:lightblue'>
+			<a href='/{{p.id}}/posts/'>{{p.post_text}}</a>
+		</labe>
+			<ul>
+				<li><a href='/FB/{{p.id}}/addLike/'>Like</a></li>
+				{% for c in p.comments_set.all %}
+					<li> {{c.comment_text}} </li>
+				{% endfor %}
+				<li>
+					<form method="post" action="/FB/{{p.id}}/addComment/">
+						{% csrf_token %}
+						<input type="text" name="comm" placeholder='write comment ...'/>
+						<input type="submit" name="sub" value="SEND"/>
+					</form>
+				</li>
+			</ul>
+			<br/>
+	{% endfor %}
+	
+	<p>{{page}}</p> -->
+</body>
+</html>

@@ -15,7 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from blog.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^addArticale/$', addArticale),
+    url(r'^addArticaleForm/$', addArticaleForm),
+
+    url(r'^updateArticale/(?P<articale_id>[0-9]+)$', updateArticale),
+    url(r'^updateArticaleForm/(?P<articale_id>[0-9]+)$', updateArticaleForm),
+
+    url(r'^deleteArticale/(?P<articale_id>[0-9]+)$', deleteArticale),
+    url(r'^deleteArticaleForm/(?P<articale_id>[0-9]+)$', deleteArticaleForm),
+
+    url(r'^selectAllArticales/$', selectAllArticales),
+
 ]
