@@ -45,4 +45,10 @@ class Emotions (models.Model):
 
 class System (models.Model):
     system_isLocked=models.BooleanField(default=False)
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    image = models.ImageField(upload_to='profile_images', blank=True)
+    website = models.URLField(blank=True)
+        
     

@@ -5,15 +5,12 @@ from django.conf import settings
 import datetime
 import os
 from django.contrib.auth.models import User
-<<<<<<< HEAD
-=======
 from _mysql import result
 from html5lib.treewalkers._base import to_text
 from django.contrib.auth import authenticate
 from .forms import UserForm
 from django.template import RequestContext
 
->>>>>>> 8d7ab0a3e268baa05d3d5264f595830b324e4bb1
 
 # Create your views here.
 def addArticaleForm(request):
