@@ -1,0 +1,11 @@
+<h1> Home Page  </h1>
+
+user name is : {{User.username}}
+
+
+	<h2>
+	{% if "user_id" in request.session %}
+		user_id in session = {{ request.session.user_id }}
+		
+	{% endif %}
+	</h2>

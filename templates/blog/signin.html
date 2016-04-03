@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form action="/home/" method="post">
+	{% csrf_token %}
+	<div class="top-margin">
+		<label>Username <span class="text-danger">*</span></label>
+		<input type="text" class="form-control" name="u_name">
+	</div>
+	<div class="top-margin">
+		<label>Password <span class="text-danger">*</span></label>
+		<input type="password" class="form-control" name="pass">
+	</div>
+
+	<hr>
+
+	<div class="row">
+		<div class="col-lg-8">
+			<b><a href="">Forgot password?</a></b>
+		</div>
+		<div class="col-lg-4 text-right">
+			<button class="btn btn-action" type="submit">Sign in</button>
+		</div>
+	</div>
+</form>
+</body>
+</html>
