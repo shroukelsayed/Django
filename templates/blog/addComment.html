@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form method="post" action="/addComment/{{articale_id}}" enctype="multipart/form-data"/>
+		{% csrf_token %}
+
+		<textarea rows="10" cols="50" placeholder="content" name="comment"></textarea>
+		<br/><br/>
+		<input type="submit" value="ADD COMMENT"/>
+	</form>
+
+</body>
+</html>
