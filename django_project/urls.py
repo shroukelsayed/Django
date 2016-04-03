@@ -29,5 +29,11 @@ urlpatterns = [
     url(r'^deleteArticaleForm/(?P<articale_id>[0-9]+)$', deleteArticaleForm),
 
     url(r'^selectAllArticales/$', selectAllArticales),
+    url(r'^selectAnArticale/(?P<articale_id>[0-9]+)$', selectAnArticale),
+
+    url(r'^addComment/(?P<articale_id>[0-9]+)$', addComment),
+    url(r'^addReply/(?P<articale_id>[0-9]+)/(?P<comment_id>[0-9]+)$', addReply),
+
+    url(r'^images/(?P<path>.*)$', 'django.views.static.serve' , {'document_root': settings.MEDIA_ROOT}),
 
 ]

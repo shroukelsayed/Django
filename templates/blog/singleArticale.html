@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+		<labe style='background-color:lightblue'>
+			<a href='#'>{{articale.article_title}}</a>
+		</labe>
+		<br/><br/>
+
+			<img src='{{ MEDIA_URL }}{{articale.article_image.name}}'/>
+
+			{{articale.article_creationDate}} <br/><br/>
+			<p>{{articale.article_content}}</p>
+			<ul>
+			{% for c in comments%}
+			<!-- <h1>{{c.parent_id_id}}</h1> -->
+			<!-- <h1>{{c.comment_isApproved}}</h1> -->
+				{%if c.comment_isApproved == 1 and c.parent_id_id == -1 %}
+					<li>{{c.comment_content}}</li>
+					<li>{{c.comment_creationDate}}</li>
+					<ul>
+					{%for reply in comments%}
+						{%if reply.parent_id_id == c.id and reply.comment_isApproved == 1 %}
+							<li>{{reply.comment_content}}</li>
+							<li>{{reply.comment_creationDate}}</li>
+						{%endif%}
+					{%endfor%}
+					<li>
+						<form method="post" action="/addReply/{{articale.id}}/{{c.id}}" />
+							{% csrf_token %}
+
+							<textarea rows="2" cols="30" placeholder="add reply ..." name="reply"></textarea>
+							<br/><br/>
+							<input type="submit" value="ADD REPLY"/>
+						</form>
+					</li>
+					</ul>
+				{%endif%}
+				
+			{% endfor %}
+			</ul>
+
+			<br/><br/>
+			<form method="post" action="/addComment/{{articale.id}}"/>
+				{% csrf_token %}
+
+				<textarea rows="2" cols="30" placeholder="add comment ..." name="comment"></textarea>
+				<br/><br/>
+				<input type="submit" value="ADD COMMENT"/>
+			</form>
+
+
+</body>
+</html>

@@ -18,9 +18,15 @@ class Comments (models.Model):
     comment_content=models.CharField(max_length=100)
     comment_creationDate=models.DateTimeField()
     comment_isApproved=models.BooleanField(default=False)
-    article_id=models.ForeignKey(Articles,on_delete=models.CASCADE,default=1)
+    article_id=models.ForeignKey(Articles,on_delete=models.CASCADE)
 #    user_id=models.ForeignKey(User,on_delete=models.CASCADE)
-    parent_id=models.ForeignKey('self',default=id)
+    parent_id=models.ForeignKey('self', on_delete=models.CASCADE, default=-1)
+
+    # def save(self, checkPartener =True , *args, **kwargs):
+    #     super(Comments,self).save()
+    #     if self.parent_id and checkPartener:
+    #         self.parent_id.parent_id=self
+    #         self.parent_id.save(checkPartener=False)
 
 class Tags (models.Model):
     tag_name=models.CharField(max_length=100)

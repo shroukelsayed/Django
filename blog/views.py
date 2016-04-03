@@ -12,31 +12,31 @@ from html5lib.treewalkers._base import to_text
 def addArticaleForm(request):
 	#adding article is depending on user's rolles --> Sarah
 	#note: this role is for all articles, not for user's articles --> Sarah
-	user = User.objects.all()
-	if user.is_staff or user.is_superuser:
+	# user = User.objects.all()
+	# if user.is_staff or user.is_superuser:
 		#Salma
 		return render(request, 'blog/addArtical.html')
-	else :
-		return render(request, 'blog/permissionDenied.html')
+	# else :
+	# 	return render(request, 'blog/permissionDenied.html')
 
 def updateArticaleForm(request, articale_id):
 	#adding article is depending on user's rolles --> Sarah
 	#note: this role is for all articles, not for user's articles --> Sarah
-	user = User.objects.all()
-	if user.is_staff or user.is_superuser:
+	# user = User.objects.all()
+	# if user.is_staff or user.is_superuser:
 		return render(request, 'blog/updateArticale.html', {'articale_id':articale_id})
-	else :
-		return render(request, 'blog/permissionDenied.html')
+	# else :
+	# 	return render(request, 'blog/permissionDenied.html')
 
 def deleteArticaleForm(request, articale_id):
 	#adding article is depending on user's rolles --> Sarah
 	#note: this role is for all articles, not for user's articles --> Sarah
-	user = User.objects.all()
-	if user.is_staff or user.is_superuser:
+	# user = User.objects.all()
+	# if user.is_staff or user.is_superuser:
 		#salma
 		return render(request, 'blog/deleteArticale.html', {'articale_id':articale_id})
-	else :
-		return render(request, 'blog/permissionDenied.html')
+	# else :
+	# 	return render(request, 'blog/permissionDenied.html')
 
 def addArticale(request):
 	content = request.POST['content']
@@ -49,12 +49,12 @@ def addArticale(request):
 	c.save()	
 	#adding article is depending on user's rolles --> Sarah
 	#note: this role is for all articles, not for user's articles --> Sarah
-	user = User.objects.all()
-	if user.is_staff or user.is_superuser:
+	# user = User.objects.all()
+	# if user.is_staff or user.is_superuser:
 		#Salma
-		return render(request, 'blog/addArtical.html')
-	else :
-		return render(request, 'blog/permissionDenied.html')
+	return render(request, 'blog/addArtical.html')
+	# else :
+	# 	return render(request, 'blog/permissionDenied.html')
 
 #Salma
 def updateArticale(request, articale_id):
@@ -67,12 +67,12 @@ def updateArticale(request, articale_id):
 	articale.save()	
 	#adding article is depending on user's rolles --> Sarah
 	#note: this role is for all articles, not for user's articles --> Sarah
-	user = User.objects.all()
-	if user.is_staff or user.is_superuser:
+	# user = User.objects.all()
+	# if user.is_staff or user.is_superuser:
 		#salma
-		return render(request, 'blog/addArtical.html')
-	else :
-		return render(request, 'blog/permissionDenied.html')
+	return render(request, 'blog/addArtical.html')
+	# else :
+	# 	return render(request, 'blog/permissionDenied.html')
 
 def deleteArticale(request, articale_id):
 	articale = Articles.objects.get(pk=articale_id)
@@ -81,12 +81,12 @@ def deleteArticale(request, articale_id):
 	articale.delete()	
 	#adding article is depending on user's rolles --> Sarah
 	#note: this role is for all articles, not for user's articles --> Sarah
-	user = User.objects.all()
-	if user.is_staff or user.is_superuser:
+	# user = User.objects.all()
+	# if user.is_staff or user.is_superuser:
 		#Salma
-		return render(request, 'blog/addArtical.html')
-	else :
-		return render(request, 'blog/permissionDenied.html')
+	return render(request, 'blog/addArtical.html')
+	# else :
+	# 	return render(request, 'blog/permissionDenied.html')
 
 def selectAllArticales(request):
 	articales = Articles.objects.all()
@@ -96,6 +96,25 @@ def selectAllArticales(request):
 	result += '</ul>'
 	return HttpResponse(result)
 
+def selectAnArticale(request,articale_id) :
+	articale = Articles.objects.get(pk=articale_id)
+	comments=articale.comments_set.all()
+	return render(request, 'blog/singleArticale.html',{'articale':articale,'comments':comments})
+
+def addComment(request,articale_id):
+	comment = request.POST['comment']
+	articale=Articles.objects.get(pk=articale_id)
+	c = Comments(comment_content=comment, comment_creationDate=datetime.datetime.now(), article_id=articale)
+	c.save()	
+	return render(request, 'blog/addArtical.html')
+
+def addReply(request,articale_id,comment_id):
+	reply = request.POST['reply']
+	articale=Articles.objects.get(pk=articale_id)
+	comment=Comments.objects.get(pk=comment_id)
+	c = Comments(comment_content=reply, comment_creationDate=datetime.datetime.now(), article_id=articale,parent_id=comment)
+	c.save()	
+	return render(request, 'blog/addArtical.html')
 
 # list all users --> Sarah
 def listAllUsers(request):
