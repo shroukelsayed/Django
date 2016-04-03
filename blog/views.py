@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,render_to_response
 from django.http import HttpResponse
 from .models import *
 from django.conf import settings
@@ -8,6 +8,9 @@ from django.contrib.auth.models import User
 from _mysql import result
 from html5lib.treewalkers._base import to_text
 from django.contrib.auth import authenticate
+from .forms import UserForm
+from django.template import RequestContext
+
 
 # Create your views here.
 def addArticaleForm(request):
@@ -142,3 +145,31 @@ def signin(request):
     else:
         return render(request,'blog/signin.html')
     
+def index(request) :
+	context = {}
+	return render(request,'blog/index.html',context)
+    
+def validate(request):
+        
+        return render(request,'blog/index.html',context)
+    
+def register(request):
+    context = RequestContext(request)
+    registered = False
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        
+        if user_form.is_valid():
+            user=user_form.save()
+            user.set_password(user.password)
+            user.save()
+            registered = True
+        else:
+            print user_form.errors
+    else:
+        user_form=UserForm()
+        
+    return render_to_response(
+        'blog/register.html',
+        {'user_form':user_form,'registered':registered},context
+    )
