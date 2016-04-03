@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+      
+        <title>REGISTRATION FORM</title> 
+        <script src=" js/jquery-1.11.3.js" charset="utf-8"></script>
+        <script src="js/validate.js" charset="utf-8"></script>
+        
+    </head>
+    <body>
+        <a href="register">Register here</a>
+        <form action="validate" method="post" >
+            <table>
+                <tr>
+                    <td>
+                        <label for="user_name">User_Name</label>
+                    </td>
+                    <td colspan="2">
+                        <input type="text" id="user_name" name="user_name" value="" placeholder="PLEASE ENTER YOUR NAME" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">Email</label>
+                    </td>
+                    <td colspan="2">
+                        <input type="email" id="email" name="email" value="" placeholder="PLEASE ENTER YOUR E-MAIL" required>
+                        <span id="sp2"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="gender">Gender</label>
+                    </td>
+                    <td>
+                        <span><input type="radio" name="gender" value="male" required>Male</span>
+                    </td>
+                    <td>
+                        <span><input type="radio" name="gender" value="female" required>Female</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="birth_date">Birth Date</label>
+                    </td>
+                    <td colspan="2">
+                        <input type="date" id="birth_date" name="birth_date" value=""  required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="password">Password</label>
+                    </td>
+                    <td colspan="2">
+                        <input type="password" id="password" name="password" value="" placeholder="PLEASE ENTER YOUR PASSWORD" required>
+                        <span id="sp3"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="repassword">Re-password</label>
+                    </td>
+                    <td colspan="2">
+                        <input type="password" id="repassword" name="repassword" value="" placeholder="PLEASE ENTER YOUR REPASSWORD" required>
+                        <span id="sp4"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">
+                        <label for="captcha">Captcha</label>
+                    </td>
+                    <td colspan="2">
+                        <!--<img src="1.png"/>-->
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="text" id="captcha" name="captcha" placeholder="PLEASE ENTER CAPTCHA" required >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="REGISTER" name="submit">
+                    </td>
+                    <td colspan="2">
+                        <input type="submit" value="REGISTER WITH FACEBOOK" >
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
