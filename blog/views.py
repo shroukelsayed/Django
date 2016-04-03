@@ -4,6 +4,7 @@ from .models import *
 from django.conf import settings
 import datetime
 import os
+from django.contrib.auth.models import User
 
 # Create your views here.
 def addArticaleForm(request):
