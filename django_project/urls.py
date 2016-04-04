@@ -35,8 +35,8 @@ urlpatterns = [
     url(r'^addComment/(?P<articale_id>[0-9]+)$', addComment),
     url(r'^addReply/(?P<articale_id>[0-9]+)/(?P<comment_id>[0-9]+)$', addReply),
 
-    url(r'^images/(?P<path>.*)$', 'django.views.static.serve' , {'document_root': settings.MEDIA_ROOT}),
-    url(r'^signin/$',signin),
-    url(r'home/$',home)
+    # url(r'^images/(?P<path>.*)$', 'django.views.static.serve' , {'document_root': settings.MEDIA_ROOT}),
+    # url(r'^signin/$',signin),
+    # url(r'home/$',home)
 
 ]

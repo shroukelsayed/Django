@@ -19,12 +19,13 @@ class Articles (models.Model):
         return self.article_title
 
 class Comments (models.Model):
+    
     comment_content=models.CharField(max_length=100)
     comment_creationDate=models.DateTimeField()
     comment_isApproved=models.BooleanField(default=False)
     article_id=models.ForeignKey(Articles,on_delete=models.CASCADE,default=1)
     user_id=models.ForeignKey(User,on_delete=models.CASCADE,default=1)
-    parent_id=models.ForeignKey('self', on_delete=models.CASCADE, default=-1)
+    parent_id=models.ForeignKey('self',default=id)
 
     def __unicode__(self):
         return self.article_title
